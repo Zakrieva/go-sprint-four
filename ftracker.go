@@ -13,7 +13,7 @@ const (
 	kmhInMsec = 0.278 // коэффициент для преобразования км/ч в м/с.
 	cmInM     = 100   // количество сантиметров в метре.
 )
-
+// 
 // distance возвращает дистанцию(в километрах), которую преодолел пользователь за время тренировки.
 //
 // Параметры:
@@ -115,7 +115,6 @@ func WalkingSpentCalories(action int, duration, weight, height float64) float64 
 	// meanSpeed даёт км/ч, а формула требует м/с
 	speedKmh := meanSpeed(action, duration)
 	speedMsec := speedKmh * kmhInMsec
-
 	heightM := height / cmInM // рост в метрах, если в параметрах пришли сантиметры
 	return (walkingCaloriesWeightMultiplier*weight+
 		(math.Pow(speedMsec, 2)/heightM)*walkingSpeedHeightMultiplier*weight) * duration * minInH
@@ -153,3 +152,7 @@ func SwimmingSpentCalories(lengthPool, countPool int, duration, weight float64) 
 	speed := swimmingMeanSpeed(lengthPool, countPool, duration) // км/ч
 	return (speed+swimmingCaloriesMeanSpeedShift)*swimmingCaloriesWeightMultiplier*weight*duration
 }
+// func SwimmingSpentCalories(lengthPool, countPool int, duration, weight float64) float64 {
+// 	speed := swimmingMeanSpeed(lengthPool, countPool, duration) // км/ч
+// 	return (speed+swimmingCaloriesMeanSpeedShift)*swimmingCaloriesWeightMultiplier*weight*duration
+// }
